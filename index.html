@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Birthday wishes</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #28282B;
+            font-family: Arial, sans-serif;
+        }
+        .wish {
+            font-size: 2em;
+            margin: 20px;
+            opacity: 0;
+            transition: opacity 1s;
+            color: white;
+        }
+        .animated {
+            width: 300px;
+            display: none;
+            margin-top: 50px;
+        }
+        .happy-birthday-text {
+            font-size: 3em;
+            opacity: 0;
+            margin-top: 20px;
+            transition: opacity 1s;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id='wishes'></div>
+    <button id='nextWishButton' style="background-color: cyan">Click here😊!</button>
+    <img id='animated-image' class='animated' src='IMG_20240908_135837.jpg' alt='Happy Birthday!' />
+    <div id='happyBirthdayText' class='happy-birthday-text' >Happy Birthday ❤️❤️ !</div>
+    <script>
+        const wishes = [
+            'Click the button till the button is there 👍 !',
+            'Click it till end!',
+            'I am not sure when your birthday comes😞..!',
+            'But i know its in September 😃!',
+            'So here is a gift from my side😊!',
+            'Happy Birthday to you🌹😄!',
+            'May god bless you and give you everything you want❤️❤️!',
+            'Now the last click ✌️!',
+        ];
+        let currentWish = 0;
+        const wishesContainer = document.getElementById('wishes');
+        const nextWishButton = document.getElementById('nextWishButton');
+        const happyBirthdayText = document.getElementById('happyBirthdayText');
+        
+        function showWish() {
+            if (currentWish < wishes.length) {
+                const wish = document.createElement('div');
+                wish.className = 'wish';
+                wish.innerText = wishes[currentWish];
+                wishesContainer.appendChild(wish);
+                
+                setTimeout(() => {
+                    wish.style.opacity = 1;
+                }, 100);
+                
+                currentWish++;
+
+                setTimeout(() => {
+                    wish.style.opacity = 0;
+                }, 3000);
+            } else {
+                document.getElementById('animated-image').style.display = 'block';
+                happyBirthdayText.style.opacity = 1; // Show happy birthday text
+                nextWishButton.style.display = 'none'; // Hide button after last wish
+            }
+        }
+        
+        nextWishButton.addEventListener('click', function() {
+            showWish();
+        });
+    </script>
+</body>
+</html>
